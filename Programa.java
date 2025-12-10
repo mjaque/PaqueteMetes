@@ -13,6 +13,7 @@ public class Programa{
 					registrarEnvio();
 					break;
 				case "2":
+					verInforme();
 					break;
 				case "X":
 				case "x":
@@ -24,6 +25,17 @@ public class Programa{
 		}while(repetirMenu);
 		teclado.close();
 		System.out.println("Fin del programa. Espero volver a verle pronto.\n");
+	}
+
+	public static void verInforme(){
+		Float suma = 0f;
+		System.out.println("\nINFORME DE ENVÍOS");
+		for(int i = 0; i < iEnvios; i++){
+			System.out.println("\t" + (i + 1) + ". " + envios[i].verComoString());
+			suma += envios[i].precio;
+		}
+		System.out.println("\t-----------------");
+		System.out.println("\tTOTAL:\t\t" + suma + "€\n");
 	}
 
 	public static String verMenu(){
@@ -41,12 +53,12 @@ public class Programa{
 				System.out.println("\nRegistro de Envío");
 				System.out.print("\tNúmero: ");
 				String numero = teclado.nextLine();
+				if (numero.isEmpty())
+					break;
 				System.out.print("\tPrecio: ");
 				Float precio = Float.valueOf(teclado.nextLine());
 
-				Envio envio = new Envio();
-				envio.numero = numero;
-				envio.precio = precio;
+				Envio envio = new Envio(numero, precio);
 				envios[iEnvios++] = envio;
 				
 				System.out.println("Registro OK");
