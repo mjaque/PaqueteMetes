@@ -1,3 +1,7 @@
+/**
+ * Programa.java
+ * @author: Miguel Jaque
+ **/
 import java.util.Scanner;
 
 public class Programa{
